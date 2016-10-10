@@ -1,0 +1,12 @@
+[Unit]
+Description=flaskapp
+After=network.target
+
+[Service]
+User=flaskappuser
+Restart=on-failure
+WorkingDirectory=/home/flaskappuser/flaskapp/
+ExecStart=/home/flaskappuser/flaskapp/flaskvenv/bin/gunicorn -c /home/flaskappuser/flaskapp/gunicorn.conf -b 0.0.0.0:5000 app:app
+
+[Install]
+WantedBy=multi-user.target
